@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% block content %}
+<div>
+
+        <div>
+
+            <div class="col-sm-2">
+
+                <div class="panel" style="">
+                    <a href="{{url_for('mainmenu')}}">Retour a l'accueil</a>
+                    <br>
+                    <h3>Menu</h3>
+                    <h4>Categorie 1</h4>
+                    <h4>--  Sous-categorie 1</h4>
+                    <p>--------  Chapter 1 </p>
+                    <p>--------  Chapter 2 </p>
+                    <p class="current-article">--------  Chapter 3 </p>
+                    <p>--------  Chapter 4 </p>
+                    <p>--------  Chapter 5 </p>
+                    <p>--------  Chapter 6 </p>
+                    <p>--------  Chapter 7 </p>
+                    <p>--------  Chapter 8 </p>
+                    <p>--------  Chapter 9 </p>
+                </div>
+            </div>
+            <div class="col-sm-9 ">
+                {% include "tab-section.html" %}
+                <div class="panel row">
+                    <h1>{{article.name}}</h1>
+                    <br>
+                    {{article.content|safe}}
+                </div>
+            </div>
+            <div class="col-sm-1 ">
+                <div class="edit-btn-group">
+                    <div>
+                        <a id="a" style="position: fixed;" href="{{url_for('article_general_edit', category_id=category_id, subcategory_id=subcategory_id, article_id=article.id) }}">Editer ce cours</a>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div>
+                        <a id="b" style="position: fixed;" href="{{url_for('article_user_edit', category_id=category_id, subcategory_id=subcategory_id, article_id=article.id) }}">Faire ma propre version</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

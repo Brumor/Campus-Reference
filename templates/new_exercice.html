@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    <div class="row panel main-menu-panel">
+            <form action="#" method = "post">
+            <button type="submit" class="btn btn-default" id="submit" type="submit">Envoyer</button>
+            <br>
+            <label for="name">Titre:</label>
+            <input type ="text" class="form-control" maxlength="100" name="name">
+            <br>
+            <label for="content">Exercice :</label>
+            <br>
+            <textarea name="content" class="edition-area" style="min-height: 200px;"></textarea>
+            <br>
+            <label for="answer">Reponse :</label>
+            <br>
+            <textarea name="answer" class="edition-area" style="min-height: 200px;"></textarea>
+            <br>
+            </form>
+        </p>
+    </div>
+
+
+</div>
+
+{% endblock %}

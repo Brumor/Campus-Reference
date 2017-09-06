@@ -1,0 +1,354 @@
+body {
+    background-color: #f5f5f5;
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion, button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+div.discussion-panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
+/* Style the list */
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: none;
+    font-size: 15px;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+
+.text-muted {
+    color: #BCBBBB;
+}
+.text-thin {
+    font-weight: 100;
+}
+
+.title-super {
+    font-size: 60px
+}
+
+.title-logo {
+    margin-top: 20px;
+}
+
+.container {
+    margin: 20px;
+    width: auto;
+}
+
+.border-red {
+    border: 1px solid red !important;
+}
+
+.panel {
+    margin-top: 20px;
+    background-color: white;
+    padding: 16px;
+    box-shadow: -7px 5px 5px #c2c2c2;
+}
+
+.current-article {
+    color: blue;
+    font-style: italic;
+}
+
+.tab-section {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.tab-section a {
+    color: black;
+}
+
+.tab {
+    width: 11%;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-right: 1px groove #CCC;
+}
+
+.tab:hover {
+    background-color: lightgrey;
+}
+
+.current-tab {
+    width: 11%;
+    background-color: grey;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.current-tab:hover {
+    color: lightgrey;
+}
+
+.img-clipboard {
+    width: 75px;
+    margin-bottom: 30px;
+}
+
+.button-box {
+    padding: 16px;
+}
+
+.edit-text-button {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+
+.main-menu-panel {
+    max-width: 1225px;
+    margin: auto;
+    margin-top: 50px
+}
+
+
+.category-holder {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+/* Clear floats after containers */
+.category-holder::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Increase the font-size of a span element */
+.category-holder span {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.category-holder:hover {
+    background-color: #2676fe;
+}
+
+.subcategory-holder {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+/* Clear floats after containers */
+.subcategory-holder::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Increase the font-size of a span element */
+.subcategory-holder span {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+
+.subcategory-holder:hover {
+    background-color: #2676fe;
+}
+
+
+.chapter-holder {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+
+.chapter-holder::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.chapter-holder span {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+
+.chapter-holder:hover {
+    background-color: #2676fe;
+}
+
+.answer {
+    margin: 30px;
+}
+.answer-content {
+    margin: 30px;
+}
+
+.pagination {
+    max-width: 350px;
+    margin: auto;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.exercice-box {
+    border-radius: 25px;
+    border: 5px dotted grey;
+    margin-top: 150px;
+    margin-left : 50px;
+    margin-right : 50px;
+    padding:30px;
+}
+
+.mycourse-box {
+    border-radius: 25px;
+    border: 5px dotted grey;
+    margin-top: 70px;
+    margin-left : 50px;
+    margin-right : 50px;
+    padding:30px;
+}
+
+.historic_item {
+    margin: 20px;
+    margin-top: 45px;
+}
+
+
+.edit-btn-group a {
+    color: white;
+    margin-top: 20px;
+    padding: 10px 24px; /* Some padding */
+    display: block; /* Make the buttons appear below each other */
+    width: 7%;
+    position: fixed;
+    background-color:#f7834f;
+}
+
+.edit-btn-group a:not(:last-child) {
+    border-bottom: none;
+}
+
+
+.edit-btn-group a:hover {
+    background-color: lightgrey;
+}
+
+.toolbox {
+    width: 125px;
+    position: fixed;
+}
+
+.scroller_anchor{height:0px; margin:0; padding:0;}
+
+#a {
+    float: :left;
+}
+
+#b {
+    float: left;
+    clear: left;
+}
+
+@media (max-width: 500px) {
+
+  .category-holder {
+    text-align: center;
+  }
+
+  .subcategory-holder {
+    text-align: center;
+  }
+
+    .chapter-holder {
+    text-align: center;
+  }
+
+
+}
+
+@media (max-width: 1920px) {
+    .tab {
+        font-size: 13px;
+    }
+
+    .current-tab {
+        font-size: 13px;
+    }
+
+    .menu-left {
+        width: 180px;
+    }
+}

@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    <div class="row panel main-menu-panel">
+        <h2>{{discussion.title}}</h2>
+                    <div class="answer">
+                        <div class="row">
+                            <img src="http://placekitten.com/g/20/20" class="col-md-1" style="max-height: 250px; max-width: 250px;">
+                            <p class="col-md-9" style="margin-top: 10px">Username 1 </p>
+                        </div>
+                        <p class="answer-content">{{discussion.content}}</p>
+                        <hr size="30px">
+                    </div>
+
+                {% for message in messages %}
+
+                <div class="answer">
+                        <div class="row">
+                            <img src="http://placekitten.com/g/20/20" class="col-md-1" style="max-height: 250px; max-width: 250px;">
+                            <p class="col-md-9" style="margin-top: 10px">Username 1 </p>
+                        </div>
+                        <p class="answer-content">{{message.content}}</p>
+                        <hr size="30px">
+                    </div>
+                {% endfor %}
+                <form action="#" method = "post">
+                <label for="content">Nouveau message :</label>
+                <textarea name="content" class="edition-area" style="min-height: 300px;"></textarea>
+                <button type="submit" class="btn btn-default" id="submit" type="submit">Envoyer</button>
+                </form>
+    </div>
+
+
+</div>
+
+{% endblock %}

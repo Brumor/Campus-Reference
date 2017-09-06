@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Campus Reference</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+            {% include "header.html" %}
+        <div class="container-fluid" style="padding-top: 60px">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

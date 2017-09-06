@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    <div class="row panel main-menu-panel">
+        <h1>Sous-Categorie 1</h1>
+        <p>
+
+            <br>
+            <br>
+
+            Sur ce site t'apprendras pleins de truc cowl!
+
+            <br>
+            <br>
+            <hr>
+            Le cours etape par etape :
+            <br>
+            <a href="{{url_for('new_article', category_id=category_id, subcategory_id=subcategory_id) }}">Nouveau Chapitre</a>
+
+
+                {% for article in articles %}
+                <div class="chapter-holder">
+                    <a href='{{url_for('article_main', category_id=category_id, subcategory_id=subcategory_id, article_id=article.id) }}'>
+                        <p><span>{{article.name}}</span></p>
+                    </a>
+                </div>
+                {% endfor %}
+        </p>
+    </div>
+
+
+</div>
+
+{% endblock %}

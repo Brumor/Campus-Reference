@@ -1,0 +1,16 @@
+done {
+    article_user_edit
+    article_main
+    main_menu
+    article_discussions
+    article_exercice
+    article_historic
+    article_summarized
+    category_menu
+    subcategory_menu
+    user_account
+    user_myPapersList
+}
+
+to-do {
+}

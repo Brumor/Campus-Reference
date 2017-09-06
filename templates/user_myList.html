@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+
+        <div class="row">
+
+            <div class="col-md-2 vertical-line">
+
+                <div class="panel">
+                    <div class="row" style="margin: 2px">
+                        <input type="text" name="searchInput" placeholder ="Rechercher..." class="col-md-7">
+                        <input type="button" name="searchButton" value="Entrer" class="col-md-5">
+                    </div>
+                    <a href="{{url_for('mainmenu')}}">Retour a l'accueil</a>
+                    <br>
+                    <h3>Username</h3>
+                    <a href="{{url_for('user_account', user_id=user.id) }}"><h4 style="color: black; font-size: 16px"> Mon compte </h4></a>
+                    <a href=""><h4 class="current-article" style="font-size: 16px"> Mes cours </h4></a>
+                    <a href=""><h4 style="color: black; font-size: 16px"> Cours Partages avec moi </h4></a>
+                </div>
+            </div>
+            <div class="col-md-9 ">
+                <div class="panel row">
+                    <h1> Mes cours</h1>
+                    <hr>
+                    {% for chapter in chapters %}
+                    <div class="mycourse-box">
+                        <div class="subcategory-holder" style="padding: 8px">
+                            <a href="{{url_for('user_myChapter', user_id=user.id, pchapter_id=chapter.id) }}" style="color: black;">
+                                <h4 style="margin-left: 15px; margin-top: 40px;">{{chapter.name}}</h4>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

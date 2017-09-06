@@ -1,0 +1,17 @@
+<div class="row top-menu" style="padding: 16px; position: fixed; z-index: 3; background-color: #4fc3f7; border-bottom: 1px solid lightgrey; width: 100%; height: 60px; right: 15px; left: 15px">
+    <div class="col-md-6" style="display: inline;">
+        <a href="{{url_for('mainmenu')}}" class="col-md-2"><img src="http://via.placeholder.com/40x40"></a>
+        <input type="text" name="searchInput" placeholder ="Rechercher..." class="col-md-8">
+        <input type="button" name="searchButton" value="Entrer" class="col-md-2">
+    </div>
+    <div class="col-md-6 text-right" style="display: inline;">
+            {%if 'username' not in session %}
+            <h4><a href="{{url_for('showLogin') }}">Se connecter</a></h4>
+            {% else %}
+            <a href="{{url_for('user_account', user_id= user.id ) }}" style="color: black;">Mon Compte</a> -
+            <a href="{{url_for('user_myList', user_id= user.id ) }}" style="color: black;">Mes Chapitres</a> -
+            <a href="{{url_for('disconnect')}}" style="color: black;"> Se deconnecter </a>
+            <img src="{{user.picture}}" style="height: 40px; width: 40px">
+            {% endif %}
+    </div>
+</div>

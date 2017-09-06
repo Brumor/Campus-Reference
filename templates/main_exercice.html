@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    <div class="row main-menu-panel">
+        <div class="panel row">
+            <a href="{{url_for('new_exercice', category_id=category_id, subcategory_id=subcategory_id, article_id=article_id) }}">Ajouter un exercice</a>
+            <div class="col-md-12">
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a class="active" href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+            <div class="exercice-box">
+                <h2>{{exercice.title}}</h2>
+                <p>
+                <br>
+                <br>
+                    {{exercice.content}}
+                    <br>
+                    <br>
+                    </p>
+                    <button class="button" onclick="showSolution()">Show Solution</button>
+                    </div>
+                    <div id="solution" style="display: none; margin: 85px;
+                    ">
+                        <p>
+                            {{exercice.answer}}
+                        </p>
+                    </div>
+        </div>
+    </div>
+
+</div>
+<script>
+function showSolution() {
+    var x = document.getElementById('solution');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

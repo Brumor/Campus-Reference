@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+
+        <div class="row">
+
+            <div class="col-md-1 vertical-line">
+            </div>
+            <div class="col-md-10 ">
+                {% include "tab-section.html" %}
+                <div class="panel row">
+                {% for history in histories%}
+                    <div class="historic_item col-md-6">
+                        <img src="{{history.user_picture}}" class="col-md-1" style="height: 30px; width: 70px;">
+                        <p class="col-md-2">{{history.user_name}}</p>
+                        <p class="col-md-2">{{history.description}}</p>
+                        <p>{{history.date}}</p>
+                    </div>
+                {% endfor %}
+
+
+                </div>
+
+            </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

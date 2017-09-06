@@ -1,0 +1,17 @@
+<div class="row top-menu" style="padding: 16px">
+    <div class="col-md-8">
+        <a href="{{url_for('mainmenu')}}"><img src="http://via.placeholder.com/350x150"></a>
+    </div>
+    <div class="col-md-4 text-right">
+            {%if 'username' not in session %}
+            <h4><a href="{{url_for('showLogin') }}">Se connecter</a></h4>
+            {% else %}
+            <img src="{{user.picture}}" style="height: 100px; width: 100px">
+            <h2>{{user.name}}</h2>
+            <p>
+            <a href="{{url_for('user_account', user_id= user.id ) }}">Mon Compte</a> -
+            <a href="{{url_for('user_myList', user_id= user.id ) }}">Mes Chapitres</a> -
+            <a href="{{url_for('disconnect')}}"> Se deconnecter </a></p>
+            {% endif %}
+    </div>
+</div>

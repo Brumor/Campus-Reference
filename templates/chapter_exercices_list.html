@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+
+
+            <div class="col-md-1 vertical-line">
+            </div>
+            <div class="col-md-10 ">
+            <div class="panel row">
+            {% include "tab-section.html" %}
+                <a href="{{url_for('new_exercice', category_id=category_id, subcategory_id=subcategory_id, article_id=article_id) }}">Ajouter un exercice</a>
+
+                {% for exercice in exercices %}
+                    <br>
+                    <a href="{{url_for('main_exercice', category_id=category_id, subcategory_id=subcategory_id, article_id=article_id, exercice_id=exercice.id) }}">Exercice {{exercice.id}}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+</div>
+
+{% endblock %}

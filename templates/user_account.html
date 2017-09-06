@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+
+        <div class="row">
+
+            <div class="col-md-2 vertical-line">
+
+                <div class="panel">
+                    <div class="row" style="margin: 2px">
+                        <input type="text" name="searchInput" placeholder ="Rechercher..." class="col-md-7">
+                        <input type="button" name="searchButton" value="Entrer" class="col-md-5">
+                    </div>
+                    <a href="">Retour a l'accueil</a>
+                    <br>
+                    <h3>Username</h3>
+                    <a href=""><h4 class="current-article" style="font-size: 16px" > Mon compte </h4></a>
+                    <a href="{{url_for('user_myList', user_id=user.id) }}"><h4 style="color: black; font-size: 16px"> Mes cours </h4></a>
+                    <a href=""><h4 style="color: black; font-size: 16px"> Cours Partages avec moi </h4></a>
+                </div>
+            </div>
+            <div class="col-md-9 ">
+                <div class="panel row">
+                    <h1> Mon compte</h1>
+                    <hr>
+                    <p class="col-md-2">Username : </p>
+                    <p class="col-md-10"><a href="">{{user.name}}</a></p>
+                    <br>
+                    <p class="col-md-2">Password : </p>
+                    <p class="col-md-10"><a href="">*******</a></p>
+                    <br>
+                    <p class="col-md-2">E-mail : </p>
+                    <p class="col-md-10"><a href="">{{user.email}}</a></p>
+                    <br>
+                    <p class="col-md-2">Certifie : </p>
+                    <p class="col-md-10">Nope. <a href="">Comment devenir certifie?</a></p>
+                    <br>
+                    <p class="col-md-2">Photo de profil : </p>
+                    <br>
+                    <a href=""><img src="{{user.picture}}"></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
