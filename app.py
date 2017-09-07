@@ -21,7 +21,7 @@ session = DBSession()
 
 
 # Create anti-forgery state token
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'])
 def showLogin():
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits)
 					for x in xrange(32))
@@ -422,5 +422,8 @@ def dated_url_for(endpoint, **values):
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'
+	app.config['filesystem'] = 'filesystem'
+	
+	
 	app.debug = True
-	app.run(host='0.0.0.0', port=5000)
+	app.run()
