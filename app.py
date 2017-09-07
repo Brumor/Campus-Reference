@@ -13,6 +13,9 @@ import json
 from flask import make_response
 
 app = Flask(__name__)
+app.secret_key = 'super_secret_key'
+app.config['SESSION_TYPE'] = 'filesystem'
+
 
 engine = create_engine('sqlite:///mainCR.db')
 Base.metadata.bind = engine
@@ -26,7 +29,6 @@ def showLogin():
 	state = ''.join(random.choice(string.ascii_uppercase + string.digits)
 					for x in xrange(32))
 	login_session['state'] = state
-	# return "The current session state is %s" % login_session['state']
 	return render_template('login.html', STATE=state)
 
 
@@ -421,12 +423,8 @@ def dated_url_for(endpoint, **values):
 
 
 if __name__ == '__main__':
-	app.secret_key = 'super_secret_key'
-	app.config['SESSION_TYPE'] = 'sqlalchemy'
-	app.config['SECRET_KEY'] = 'redsfsfsfsfis'
 	
 	session.init_app(app)
-	
 	
 	app.debug = True
 	app.run()
