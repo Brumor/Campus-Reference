@@ -112,7 +112,6 @@ pytest==3.0.5
 python-dateutil==2.6.0
 pyttsx==1.1
 pytz==2016.10
-pywin32==220
 PyYAML==3.12
 pyzmq==16.0.2
 QtAwesome==0.4.3
