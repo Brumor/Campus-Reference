@@ -422,7 +422,7 @@ def dated_url_for(endpoint, **values):
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'
-	app.config['filesystem'] = 'filesystem'
+	app.config['SESSION_TYPE'] = 'sqlalchemy'
 	
 	
 	app.debug = True
