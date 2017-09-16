@@ -15,7 +15,7 @@ from flask import make_response
 app = Flask(__name__)
 
 
-engine = create_engine('postgresql:///mainCR.db')
+engine = create_engine('sqlite:///mainCR.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
