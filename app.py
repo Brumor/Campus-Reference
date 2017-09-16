@@ -13,9 +13,11 @@ import json
 from flask import make_response
 
 app = Flask(__name__)
+app.secret_key = 'super_secret_key'
+app.config['SESSION_TYPE'] = 'filesystem'
 
 
-engine = create_engine('sqlite:///mainCR.db')
+engine = create_engine('postgresql:///mainCR.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -423,9 +425,6 @@ def dated_url_for(endpoint, **values):
 if __name__ == '__main__':
 	
 	session.init_app(app)
-	app.config['SESSION_TYPE'] = 'filesystem'
 	
-	app.secret_key = 'super_secret_key'
 	app.debug = True
-	
 	app.run()
