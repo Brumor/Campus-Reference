@@ -13,15 +13,11 @@ import json
 from flask import make_response
 
 app = Flask(__name__)
-app.secret_key = 'super_secret_key'
-app.config['SESSION_TYPE'] = 'filesystem'
 
-
-engine = create_engine('postgresql:///mainCR.db')
+engine = create_engine('sqlite:///main.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
 
 # Create anti-forgery state token
 @app.route('/login', methods=['GET','POST'])
@@ -135,7 +131,7 @@ def mainmenu():
 			createUser(login_session)
 	
 	if request.method == 'POST':
-		newCategory = Category(name=request.form['name'])
+		newCategory = Category(name=request.form['name'], is_verified = False)
 		session.add(newCategory)
 		session.commit()
 		return redirect(url_for('mainmenu'))
@@ -150,17 +146,18 @@ def mainmenu():
 @app.route('/<int:category_id>', methods=['GET','POST'])
 def category_menu(category_id):
 	if request.method == 'POST':
-		newSubcategory = Subcategory(name=request.form['name'], category_id=category_id)
+		newSubcategory = Subcategory(name=request.form['name'], category_id=category_id, is_verified = False)
 		session.add(newSubcategory)
 		session.commit()
 		return redirect(url_for('category_menu', category_id=category_id))
 	else:
+		category = session.query(Category).filter_by(id=category_id).one()
 		subcategories = session.query(Subcategory).filter_by(category_id=category_id).all()
 		if 'user_id' in login_session:
 			user = getUserInfo(login_session['user_id'])
-			return render_template('menu_category.html', category_id=category_id, subcategories=subcategories,
+			return render_template('menu_category.html', category=category,  subcategories=subcategories,
 								   user=user)
-		return render_template('menu_category.html', category_id=category_id, subcategories=subcategories)
+		return render_template('menu_category.html', category=category, subcategories=subcategories)
 
 
 @app.route('/<int:category_id>/<int:subcategory_id>')
@@ -273,7 +270,7 @@ def new_article(category_id, subcategory_id):
 		newArticle = Chapter(name=request.form['name'], content=request.form['content'], creation_date=datetime.now(),
 							 last_update=datetime.now(), subcategory_id=subcategory_id,
 							 user_id=login_session['user_id'], user_name=login_session['username'],
-							 user_picture=login_session['picture'])
+							 user_picture=login_session['picture'], is_verified = False)
 		session.add(newArticle)
 		session.commit()
 		createHistory(" created the Chapter ", newArticle.id)
@@ -289,7 +286,7 @@ def new_exercice(category_id, subcategory_id, article_id):
 		newExercice = ChapterExercice(title=request.form['name'], content=request.form['content'],
 									  answer=request.form['answer'], article_id=article_id,
 									  user_id=getUserID(login_session['email']), user_name=login_session['username'],
-									  user_picture=login_session['picture'])
+									  user_picture=login_session['picture'], is_verified = False)
 		session.add(newExercice)
 		session.commit()
 		createHistory(" created the exercice ", article_id)
@@ -367,6 +364,54 @@ def user_myChapter(user_id, pchapter_id):
 	return redirect(url_for('showLogin'))
 
 
+#Admin pages
+@app.route('/<int:user_id>/admin/1', methods=['GET','POST'])
+def admin_categories_confirm(user_id):
+	categories = session.query(Category).all()
+	if 'user_id' in login_session:
+		user = getUserInfo(login_session['user_id'])
+		return render_template('admin_category_confirm.html', user_id=user_id, user=user, categories=categories)
+	return redirect(url_for('showLogin'))
+
+
+@app.route('/<int:user_id>/admin/2', methods=['GET','POST'])
+def admin_subcategories_confirm(user_id):
+	subcategories = session.query(Subcategory).all()
+	if 'user_id' in login_session:
+		user = getUserInfo(login_session['user_id'])
+		return render_template('admin_subcategory_confirm.html', user_id=user_id, user=user, subcategories=subcategories)
+	return redirect(url_for('showLogin'))
+
+
+@app.route('/<int:user_id>/admin/3', methods=['GET','POST'])
+def admin_chapter_confirm():
+	return 0
+
+
+@app.route('/<int:user_id>/admin/4', methods=['GET','POST'])
+def admin_exercice_confirm():
+	return 0
+
+
+@app.route('/<int:user_id>/admin/3', methods=['GET','POST'])
+def admin_modification_confirm():
+	return 0
+
+
+@app.route('/<int:user_id>/<int:category_id>/post_category', methods=['GET','POST'])
+def confirm_article(user_id, category_id):
+	category = session.query(Category).filter_by(id=category_id).one()
+	category.is_verified = True
+	return redirect( url_for('admin_categories_confirm', user_id= user_id))
+
+
+@app.route('/<int:user_id>/<int:subcategory_id>/post_subcategory', methods=['GET','POST'])
+def confirm_subarticle(user_id, subcategory_id):
+	subcategory = session.query(Subcategory).filter_by(id=subcategory_id).one()
+	subcategory.is_verified = True
+	return redirect( url_for('admin_subcategories_confirm', user_id= user_id))
+
+
 # non-page related def
 def createUser(login_session):
 	newUser = User(name=login_session['username'], email=login_session['email'], isCertified=False,
@@ -397,13 +442,6 @@ def getUserID(email):
 		return user.id
 	except:
 		return None
-	
-	
-@app.route('/ertrteret')
-def getArticleHTML():
-	hey = "<p> " + "hey" + " </p>"
-	return hey
-
 
 # Other definitions
 
@@ -423,8 +461,6 @@ def dated_url_for(endpoint, **values):
 
 
 if __name__ == '__main__':
-	
-	session.init_app(app)
-	
+	app.secret_key = 'super_secret_key'
 	app.debug = True
-	app.run()
+	app.run(host='0.0.0.0', port=5000)

@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    {% include "admin_menu.html" %}
+    <div class="row panel main-menu-panel col-md-10">
+        <h1>Section Admin</h1>
+        <p>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            Confirmer une sous-categorie:
+
+            <br>
+            <br>
+
+                {% for subcategory in subcategories %}
+                {% if subcategory.is_verified != True %}
+                <div class="category-holder">
+                        <p class="col-md-10"><span>
+                            {{subcategory.name}}
+                        </span></p>
+
+                    <a href="{{url_for('confirm_subarticle', user_id= user.id,  subcategory_id= subcategory.id ) }}" class="col-md-2"> confirm </a>
+                </div>
+
+
+                {% endif %}
+                {% endfor %}
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}

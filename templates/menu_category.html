@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
     <div class="row panel main-menu-panel">
-        <h1>Categorie 1</h1>
+        <h1>{{ category.name }}</h1>
         <p>
 
             <br>
@@ -19,11 +19,13 @@
             </form>
             <br>
                 {% for subcategory in subcategories %}
+                {% if subcategory.is_verified == True %}
                 <div class="subcategory-holder">
-                    <a href='{{url_for('subcategory_menu', category_id= category_id, subcategory_id=subcategory.id) }}'>
+                    <a href='{{url_for('subcategory_menu', category_id= category.id, subcategory_id=subcategory.id) }}'>
                         <p><span>{{subcategory.name}}</span></p>
                     </a>
                 </div>
+                {% endif %}
                 {% endfor %}
         </p>
     </div>

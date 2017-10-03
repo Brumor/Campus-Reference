@@ -4,7 +4,6 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Boolean, Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-
 Base = declarative_base()
 
 
@@ -14,6 +13,7 @@ class Category(Base):
 	
 	id = Column(Integer, primary_key=True)
 	name = Column(String(200), nullable= False)
+	is_verified = Column(Boolean)
 
 
 class Subcategory(Base):
@@ -22,6 +22,7 @@ class Subcategory(Base):
 	
 	id = Column(Integer, primary_key=True)
 	name = Column(String(80), nullable=False)
+	is_verified = Column(Boolean)
 	category_id = Column(Integer, ForeignKey('category.id'))
 	category = relationship(Category)
 	
@@ -52,7 +53,7 @@ class Chapter(Base):
 	user = relationship(User)
 	user_name = Column(String)
 	user_picture = Column(String)
-	
+	is_verified = Column(Boolean)
 	
 class PersonalChapter(Base):
 	
@@ -127,8 +128,8 @@ class ChapterExercice(Base):
 	user = relationship(User)
 	user_name = Column(String)
 	user_picture = Column(String)
+	is_verified = Column(Boolean)
 
-
-engine = create_engine('sqlite:///mainCR.db')
+engine = create_engine('sqlite:///main.db')
 
 Base.metadata.create_all(engine)

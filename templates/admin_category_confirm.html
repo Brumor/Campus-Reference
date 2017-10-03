@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+    {% include "admin_menu.html" %}
+    <div class="row panel main-menu-panel col-md-10">
+        <h1>Section Admin</h1>
+        <p>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            Confirmer une categorie:
+
+            <br>
+            <br>
+
+                {% for category in categories %}
+                {% if category.is_verified != True %}
+                <div class="category-holder">
+                        <p class="col-md-10"><span>
+                            {{category.name}}
+                        </span></p>
+
+                    <a href="{{url_for('confirm_article', user_id= user.id,  category_id= category.id ) }}" class="col-md-2"> confirm </a>
+                </div>
+
+
+                {% endif %}
+                {% endfor %}
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}
